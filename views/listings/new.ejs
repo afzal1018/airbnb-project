@@ -1,0 +1,49 @@
+<% layout('../layouts/boilerplate') %>
+  <body>
+    <br>
+    <div class="row">
+    <div class="col-8 offset-2" >
+    <h3>Please fill the form</h3>
+    <form method="POST" action="/listings" class="needs-validation" novalidate enctype="multipart/form-data">
+        <div class="mb-3">
+          <label for="title" class="form-label">Title</label>
+          <input type="text" name="listing[title]" class="form-control " placeholder="add place name" required/>
+          <div class="invalid-feedback">Please enter a title</div>
+          <div class="valid-feedback">Looks good!</div>
+        </div>
+
+        <div class="mb-3">
+          <label for="desc" class="form-label">Description</label>
+          <textarea name="listing[desc]" class="form-control" required></textarea>
+          <div class="invalid-feedback">Please enter a shot description</div>
+        </div>
+        <div class="mb-3">
+          <label for="image" class="form-label">Upload Image</label>
+          <input type="file" name="listing[image]" class="form-control" required/>
+          <div class="invalid-feedback">Please add a file</div>
+        </div>
+        <div class="row">
+          <div class="mb-3 col-md-4">
+            <label for="price" class="form-label">Price(&#8377;)</label>
+            <input type="number" name="listing[price]"  class="form-control" placeholder="add price" value="0" />
+            <div class="invalid-feedback">Please add price</div>
+          </div>
+          <div class="mb-3 col-md-8">
+            <label for="country" class="form-label">Country</label>
+            <input type="text" name="listing[country]" class="form-control" placeholder="add country" required/>
+            <div class="invalid-feedback">Type Country</div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="location" class="form-label">Location</label>
+          <input type="text" name="listing[location]" class="form-control" placeholder="add location" required/>
+          <div class="invalid-feedback">Please type your location</div>
+        </div>
+        
+        <button type="submit" class="btn btn-dark add-btn">Add</button>
+    </form>
+  </div>
+</div>
+<br> <br>
+  </body>
+

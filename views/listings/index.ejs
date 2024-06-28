@@ -1,0 +1,178 @@
+<% layout('../layouts/boilerplate') %>
+  <style>
+    #filters {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    #filter,
+    p,
+    i {
+      font-size: 0.8rem;
+    }
+
+    .filter {
+      text-align: center;
+      margin-left: 2rem;
+      margin-top: 1rem;
+      opacity: 0.7;
+    }
+
+    .filter:hover {
+      opacity: 1;
+      cursor: pointer;
+    }
+
+    .shareIcon {
+      /* offset: 6; */
+      position: absolute;
+      bottom: 273px;
+      left: 232px;
+    }
+
+    .circle {
+      height: 35px;
+      width: 35px;
+      background-color: white;
+      border-radius: 50%;
+      position: absolute;
+      bottom: 262px;
+      left: 220px;
+      opacity: 0.7;
+    }
+
+    .circle:hover {
+      opacity: 1;
+      cursor: pointer;
+    }
+
+    .tax-info {
+      display: none;
+    }
+
+    .tax-toggle {
+      border: 1px solid #d6cece;
+      margin-left: 1rem;
+      border-radius: 1rem;
+      padding: 0.6rem;
+      display: flex;
+      align-items: center;
+      font-size: 0.7rem;
+      color: #8f8d8d;
+      font-weight: 800;
+    }
+
+    .filterBox {
+      border: 1px solid #d6cece;
+      margin-left: 2rem;
+      border-radius: 1rem;
+      padding: 0.6rem;
+      display: flex;
+      align-items: center;
+      font-size: 0.7rem;
+      color: #8f8d8d;
+      font-weight: 800;
+    }
+
+    .checkBox {
+      cursor: pointer;
+    }
+
+
+  </style>
+
+  <body>
+    <div id="filters">
+      <div class="filter">
+        <i class="fa-solid fa-fire"></i>
+        <p>Tranding</p>
+      </div>
+      <div class="filter">
+        <i class="fa-solid fa-bed"></i>
+        <p>Rooms</p>
+      </div>
+      <div class="filter">
+        <i class="fa-solid fa-umbrella-beach"></i>
+        <p>Beach</p>
+      </div>
+      <div class="filter">
+        <i class="fa-solid fa-building-columns"></i>
+        <p>Mensions</p>
+      </div>
+      <div class="filter">
+        <i class="fa-solid fa-tents"></i>
+        <p>Camping</p>
+      </div>
+      <div class="filter">
+        <i class="fa-solid fa-key"></i>
+        <p>New</p>
+      </div>
+      <div class="filter">
+        <i class="fa-solid fa-bowling-ball"></i>
+        <p>Play</p>
+      </div>
+      <div class="filter">
+        <i class="fa-solid fa-cake-candles"></i>
+        <p>Party</p>
+      </div>
+      <div class="filter">
+        <i class="fa-solid fa-person-swimming"></i>
+        <p>Adventure</p>
+      </div>
+      <div class="filter">
+        <i class="fa-regular fa-snowflake"></i>
+        <p>Arctic</p>
+      </div>
+   
+      <div class="filterBox">
+        <i class="fa-solid fa-filter"></i>
+        <label class="form-check-label" for="flexSwitchCheckDefault">Filter</label>
+      </div>
+      <div class="tax-toggle">
+        <div class="form-check-reverse form-switch">
+          <input class="form-check-input checkBox" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+          <label class="form-check-label" for="flexSwitchCheckDefault">Display total after taxes</label>
+        </div>
+      </div>
+
+    </div>
+    <div class="row row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-sm-2 mt-2">
+      <% for(let listing of allListings){ %>
+        <a href="/listings/<%= listing._id %>" class="listing-link">
+          <div class="card listing-card">
+            <div class="circle"></div>
+            <img src="<%= listing.image.url %>" class="card-img-top" alt="listing_img" style="height: 20rem;"><i
+              class="fa-solid fa-arrow-up-from-bracket shareIcon"></i>
+
+            <div class="card-img-overlay"></div>
+            <div class="card-body">
+              <p class="card-text">
+                <b>
+                  <%= listing.title %>
+                </b><br>
+                &#8377; <%= listing.price.toLocaleString('en-IN') %> /night
+                  <i class="tax-info">+18% GST</i>
+                  <br><b>Booking Opened</b>
+              </p>
+
+            </div>
+          </div>
+        </a>
+        <% }%>
+    </div>
+  </body>
+
+  <script>
+    let taxSwitch = document.getElementById("flexSwitchCheckDefault");
+    taxSwitch.addEventListener("click", () => {
+      let taxInfo = document.getElementsByClassName("tax-info");
+      for (info of taxInfo) {
+        if (info.style.display != "inline") {
+          info.style.display = "inline";
+        } else {
+          info.style.display = "none";
+        }
+      }
+    })
+  </script>
